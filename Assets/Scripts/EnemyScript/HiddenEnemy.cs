@@ -9,6 +9,7 @@ public class HiddenEnemy : EnemyBehavior
     
     void Update()
     {
+        if (Health <= 0) Destroy(gameObject);
         float distance = Vector3.Distance(transform.position, getPlayerTransform().position);
         if (distance <= activeDistance)
         {

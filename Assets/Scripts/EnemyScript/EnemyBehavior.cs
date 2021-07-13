@@ -21,7 +21,6 @@ public class EnemyBehavior : MonoBehaviour
             BulletBehavior bullet = col.gameObject.GetComponent<BulletBehavior>();
             Health -= bullet.getDamage();
             Debug.Log("Enemy has HP " + Health);
-            if (Health <= 0) Destroy(gameObject);
         }
     }
 
@@ -29,10 +28,16 @@ public class EnemyBehavior : MonoBehaviour
     void Update()
     {
         transform.position = Vector3.MoveTowards(transform.position, playerTransform.position, speed * Time.deltaTime);
+        if (Health <= 0) Destroy(gameObject);
     }
 
     public Transform getPlayerTransform()
     {
         return playerTransform;
+    }
+
+    public void receiveDamage(int damage)
+    {
+        Health -= damage;
     }
 }

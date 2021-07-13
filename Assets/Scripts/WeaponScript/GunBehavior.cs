@@ -19,4 +19,9 @@ public class GunBehavior : MonoBehaviour
             bullet.transform.forward = Camera.transform.forward;
         }
     }
+
+    public GameObject getCamera()
+    {
+        return Camera;
+    }
 }
