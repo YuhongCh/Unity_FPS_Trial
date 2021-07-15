@@ -12,6 +12,7 @@ TagManager:
   - Enemy
   - Potion
   - Statue
+  - Game Spectator
   layers:
   - Default
   - TransparentFX

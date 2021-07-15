@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEngine.SceneManagement;
 using UnityEngine;
 
 public class PlayerController : MonoBehaviour
@@ -10,9 +11,11 @@ public class PlayerController : MonoBehaviour
 
     private Rigidbody rb;
     private bool canJump = true;
+    private HealthBarBehavior HP;
     void Start()
     {
         rb = GetComponent<Rigidbody>();  
+        HP = GetComponent<HealthBarBehavior>();
     }
 
     void OnCollisionEnter(Collision col)
@@ -34,6 +37,15 @@ public class PlayerController : MonoBehaviour
         Vector3 relativeMove = Camera.transform.TransformDirection(move);
         relativeMove.y = move.y;
         rb.velocity = relativeMove;
+    }
+
+    void Update()
+    {
+        if (HP.getHealth() < 1 || transform.position.y < -10f) 
+        {
+            SceneManager.LoadScene("GameEnd");
+            Cursor.lockState = CursorLockMode.Confined;
+        }
     }
 
 }
